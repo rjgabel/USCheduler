@@ -178,7 +178,7 @@ public class JDBCConnector {
 	 * 
 	 * -2: Email already taken
 	 */
-	public static int addUser(String username, String password, String display_name, String email) {
+	public static synchronized int addUser(String username, String password, String display_name, String email) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
