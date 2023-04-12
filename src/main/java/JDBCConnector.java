@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class JDBCConnector {
 	private static final String URL = "jdbc:mysql://localhost:3306/finalprojectdatabase?user=root&password=root";
@@ -237,16 +238,18 @@ public class JDBCConnector {
 		private String name;
 		private String organizer;
 		private String description;
+		private String date;
 		private String time;
 		private String time_end;
 
-		public Event(int event_id, int user_id, String name, String organizer, String description, String time,
-				String time_end) {
+		public Event(int event_id, int user_id, String name, String organizer, String description, String date
+				, String time, String time_end) {
 			this.event_id = event_id;
 			this.user_id = user_id;
 			this.name = name;
 			this.organizer = organizer;
 			this.description = description;
+			this.date = date;
 			this.time = time;
 			this.time_end = time_end;
 		}
@@ -269,6 +272,10 @@ public class JDBCConnector {
 
 		public String getEventDescription() {
 			return description;
+		}
+		
+		public String getEventDate() {
+			return date;
 		}
 
 		public String getEventTime() {
@@ -300,7 +307,7 @@ public class JDBCConnector {
 			rs = st.executeQuery("SELECT * FROM EVENTTABLE WHERE EVENTID=" + event_id);
 			if (rs.next()) {
 				event = new Event(event_id, rs.getInt("USERID"), rs.getString("EVENTNAME"), rs.getString("ORGANIZER"),
-						rs.getString("EVENTDESCRIPTION"), rs.getString("EVENTTIME"), rs.getString("EVENTTIMEEND"));
+						rs.getString("EVENTDESCRIPTION"), rs.getString("EVENTDATE"), rs.getString("EVENTTIME"), rs.getString("EVENTTIMEEND"));
 			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -321,6 +328,44 @@ public class JDBCConnector {
 		}
 		return event;
 	}
+	
+	public static ArrayList<Event> getEventsByDate(String event_date) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		ArrayList<Event> eventList = new ArrayList<Event>();
+		try {
+			conn = DriverManager.getConnection(URL);
+			st = conn.createStatement();
+			rs = st.executeQuery("SELECT * FROM EVENTTABLE WHERE EVENTDATE=" + event_date);
+			while (rs.next()) {
+				eventList.add(new Event(rs.getInt("EVENTID"), rs.getInt("USERID"), rs.getString("EVENTNAME"), rs.getString("ORGANIZER"),
+						rs.getString("EVENTDESCRIPTION"), rs.getString("EVENTDATE"), rs.getString("EVENTTIME"), rs.getString("EVENTTIMEEND")));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (st != null) {
+					st.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+		}
+		return eventList;
+	}
 
 	/*
 	 * Sets the Event data of the event with the given id to match that passed in as
@@ -340,6 +385,7 @@ public class JDBCConnector {
 			st = conn.createStatement();
 			st.execute("UPDATE EVENTTABLE SET USERID=" + event.getUserID() + ",EVENTNAME='" + event.getEventName()
 					+ "',ORGANIZER='" + event.getOrganizer() + "',EVENTDESCRIPTION='" + event.getEventDescription()
+					+ "',EVENTDATE='" + event.getEventDate()
 					+ "',EVENTTIME='" + event.getEventTime() + "',EVENTTIMEEND='" + event.getEventTimeEnd()
 					+ "' WHERE EVENTID=" + event.getEventID());
 		} catch (SQLException sqle) {
@@ -364,8 +410,8 @@ public class JDBCConnector {
 	/*
 	 * Adds a new event and returns the EventID of the new event.
 	 */
-	public static int addEvent(int user_id, String name, String organizer, String description, String time,
-			String time_end) {
+	public static int addEvent(int user_id, String name, String organizer, String description, String date, 
+			String time, String time_end) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -380,7 +426,7 @@ public class JDBCConnector {
 			st = conn.createStatement();
 			st.execute(
 					"INSERT INTO EVENTTABLE(USERID,EVENTNAME,ORGANIZER,EVENTDESCRIPTION,EVENTTIME,EVENTTIMEEND)VALUES("
-							+ user_id + ",'" + name + "','" + organizer + "','" + description + "','" + time + "','"
+							+ user_id + ",'" + name + "','" + organizer + "','" + description + "','" + date + "','" + time + "','"
 							+ time_end + "')");
 			// https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_last-insert-id
 			rs = st.executeQuery("SELECT LAST_INSERT_ID()");
