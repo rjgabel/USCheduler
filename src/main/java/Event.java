@@ -1,4 +1,5 @@
 public class Event {
+	private int event_id;
     private int user_id;
     private String name;
     private String organizer;
@@ -7,8 +8,9 @@ public class Event {
     private String time;
     private String time_end;
 
-    public Event(int user_id, String name, String organizer, String description, String date, String time, String time_end) {
-        this.user_id = user_id;
+    public Event(int event_id, int user_id, String name, String organizer, String description, String date, String time, String time_end) {
+        this.event_id = event_id;
+    	this.user_id = user_id;
         this.name = name;
         this.organizer = organizer;
         this.description = description;
@@ -17,6 +19,14 @@ public class Event {
         this.time_end = time_end;
     }
 
+    public int getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
+    }
+    
     public int getUser_id() {
         return user_id;
     }
