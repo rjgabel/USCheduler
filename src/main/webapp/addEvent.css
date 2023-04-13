@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.orgInput, .nameInput, .descripInput {
+	width:70%; 
+	margin: auto; 
+	margin-bottom: 20px; 
+	font-size: 20px; 
+	padding: 12px 0 12px 32px; 
+	background-color:#EBEBEB; 
+	border:none;
+	color:#84786C;
+}
+
+.dateInput {
+	width:15%; 
+	margin: auto; 
+	margin-bottom: 20px; 
+	margin-right:8%; 
+	font-size: 20px; 
+	padding: 12px 0 12px 32px; 
+	background-color:#EBEBEB; 
+	border:none; 
+	color:#84786C;
+}
+
+.timeInput {
+	width:15%; margin: auto; 
+			margin-bottom: 20px; font-size: 20px; padding: 11px 0 11px 32px; background-color:#EBEBEB; 
+			border:none; color:#84786C;
+}
+
+.submitButton {
+	width:18%; 
+	margin: auto; 
+	padding: 10px 0 10px 0;
+	margin-bottom: 0; 
+	font-size: 20px; 
+	background-color:#D64949; 
+	font-family:AdirBold; 
+	border:none; 
+	color:white;
+}

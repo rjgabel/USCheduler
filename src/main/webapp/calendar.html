@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>USCheduler</title>
+<link rel="stylesheet" href="constants.css">
+<link rel="stylesheet" href="calendar.css">
+<link rel="stylesheet" href="miniCalendar.css">
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+<style>
+* {
+	font-family: Adir;
+	margin: 0;
+  	padding: 0;
+ 	box-sizing: border-box;
+}
+</style>
+
+</head>
+<body>
+
+	<div class="largeBase" style="text-align:center">
+		<div class="row">
+			<div style="flex:55%;">
+				<div class=scroll style="height: 500px; margin-top:50px; padding-left:20px; margin-left:30px">
+					<div style="direction: ltr; padding-top:40px">
+						<div id=event>
+							<p id=eventName class="eventName">Portos Fundraiser</p>
+							<p id=eventDetails class="eventDetails"> CASA  |  7am - 2pm </p>
+							<hr class="bottomLine">
+						</div>
+						
+						<div id=event>
+							<p id=eventName class="eventName">Succulents</p>
+							<p style="font-size: 36px; color:#545454; margin-top:0; margin-bottom:15px"> SC Garden Club  |  12pm - 2pm </p>
+							<hr class="bottomLine">						
+						</div>
+						
+						<div id=event>
+							<p id=eventName class="eventName">Boba</p>
+							<p id=eventDetails class="eventDetails"> Tao  |  10am - 1pm </p>
+							<hr class="bottomLine">
+						</div>
+						
+						<div id=event>
+							<p id=eventName class="eventName">Thrifted Clothes</p>
+							<p id=eventDetails class="eventDetails"> Break on 2  |  4pm - 6pm </p>
+							<hr class="bottomLine">
+						</div>
+						
+						<div id=event>
+							<p id=eventName class="eventName">Tacos</p>
+							<p id=eventDetails class="eventDetails"> SCIA  |  11am - 2pm </p>						
+						</div>
+					</div>
+				</div>
+				<div id=dateBorder class="bufferBack">
+					<p id=activeDate class="activeDate"> APRIL 10, 2023 </p>
+					<hr id=bufferBack class="bottomLine">
+				</div>
+				
+			</div>
+			<div style="flex:45%; background-color:white; margin-left:2%">
+				<br><br><br><br>
+				<button onclick="AddEvent()" class="addEventBtn">ADD EVENT</button>
+				
+				<button onclick="LoginRegister()" class="loginRegBtn">LOGIN/REGISTER</button>
+				
+				<!-- This is the Mini Calendar. It is all set up so no need to mess with it too much.
+				We will inevitably need to update it so that we can do a server call to get the events
+				on the given day. I can help with that when needed. -->
+				<div style="height: 400px; width:80%; margin:auto; margin-top: 30px; background-color: #D9D9D9">
+					<div style="direction:ltr">
+					<div class="month">
+				          <i class="fas fa-angle-left prev"></i>
+				          <div class="date">
+				            	<h1></h1>
+				            	<p></p>
+				          </div>
+				          <i class="fas fa-angle-right next"></i>
+				    </div>
+				    <div class="weekdays">
+						<div>Sun</div>
+				        <div>Mon</div>
+				        <div>Tue</div>
+				        <div>Wed</div>
+				        <div>Thu</div>
+				        <div>Fri</div>
+				        <div>Sat</div>
+					</div>
+				    <div class="days" id=days></div>
+				    </div>
+				</div>
+			</div>
+		</div>			
+	</div>
+
+<script src="calendar.js"></script>
+<script src="miniCalendar.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>USCheduler</title>
+
+<link rel="stylesheet" href="constants.css">
+<link rel="stylesheet" href="addEvent.css">
+</head>
+<body>
+	<div class="largeBase" style="text-align:center;">
+		<p style="font-size: 48px; padding-top: 40px; margin: 20px; color:#D64949; font-family:AdirBold">ADD EVENT</p>
+		
+		<form id=eventForm name="eventForm">
+			<input id=organization name="organization" class="orgInput" placeholder="Organization*">
+			<br>			
+			<input id=eventName name="eventName" class="nameInput" placeholder="Event Name*">
+			<br>
+			<textarea id=description name="description" class="descripInput" rows="6" 
+			placeholder="Enter a description of what you will be selling!*"></textarea>
+			<br>
+			<input type="date" id=eventDate name="eventDate" class="dateInput" value="">
+			<div style="margin-right:8%; display: inline">
+				<input type="time" id=startTime name="startTime" class="timeInput" value="" placeholder="Start Time">
+			</div>
+			<input type="time" id=endTime name="endTime" class="timeInput" value="" placeholder="End Time">
+			<br>
+			<input type="file" id=eventImage name="eventImage" accept=".jpg, .jpeg, .png">
+			<br>
+			<br>
+			<input type="submit" class="submitButton" value="SUBMIT">
+			<br>
+		</form>
+	</div>
+
+<script src="addEvent.js"></script>
+</body>
+</html>

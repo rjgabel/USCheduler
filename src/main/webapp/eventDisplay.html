@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>USCheduler</title>
+<link rel="stylesheet" href="eventDisplay.css">
+<link rel="stylesheet" href="constants.css">
+</head>
+<body>
+	<div class="largeBase">
+		<div class="row">
+			<div style="flex:50%;">
+				<button onclick="OnBack()" class="backButton">< Back</button>
+				<div id=info class="info">
+					<p id=title class="title">Portos Fundraiser</p>
+					<p id=club class="club"> CASA </p>
+					<p id=time class="time"> 4/10/2023 |  7am - 2pm </p>
+					<hr style="border-color:#D9D9D9;border-top-width: 2px;border-right-width: 0px;margin-top: 0px; margin-bottom: 0; border-bottom-width: 0px;border-left-width: 0px;border-style: solid;">
+				</div>
+				
+				<div class=scroll style="height: 300px; width: 80%; margin-top:10px; padding-left:20px; padding-right: 40px;margin-left:40px; ">
+					<div style="direction: ltr;">
+						<p id=description class="description">
+							We're selling Pot of Cha for only $5 a cup! Help raise money for our retreat! 
+							We will be selling 4 types of boba: 
+							<br> - Chai with Pearls 
+							<br> - Thai Tea with Lycee 
+							<br> - Black Milk Tea with Cheese Crema
+							<br> - Jasmine Green Milk Tea with Mini Pearls
+						</p>
+					</div>
+				</div>				
+			</div>
+			<div style="flex:50%; background-color:white; margin-left:2%">
+			
+				<div class=frame id=imgFrame style="margin:auto">
+           			<span class=helper></span><img src="../../../PotofCha.jpg" alt="PotofCha" id=eventImg class="eventImg">
+    			</div> 
+			</div>
+		</div>
+	</div>
+
+<script src="eventDisplay.js"></script>
+</body>
+</html>

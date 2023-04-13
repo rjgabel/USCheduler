@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+
+ function AddEvent() {
+	 
+ }
+ 
+ function LoginRegister() {
+	 
+ }

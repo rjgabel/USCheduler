@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "Adir";
+	src: url('../../../29ltadir-regular-webfont.woff') format(woff);
+}
+
+@font-face {
+	font-family: "AdirBold";
+	src: url('../../../29LTAdir-Bold.woff') format(woff);
+}
+
+@font-face {
+	font-family: "AdirExtraBold";
+	src: url('../../../29LTAdir-ExtraBold.woff') format(woff);
+}
+
+* {
+	font-family: Adir;
+}
+
+body {
+	background-image: url('../../../201Background.jpg'); 
+	background-size: cover
+}
+
+.row {
+	display: flex;
+}
+
+.column {
+	flex: 50%;
+}
+
+.largeBase {
+	width:75%; 
+	height:600px; 
+	margin: auto; 
+	margin-top:60px; 
+	background-color:white; 
+}
