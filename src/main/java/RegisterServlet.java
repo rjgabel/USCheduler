@@ -45,10 +45,10 @@ public class RegisterServlet extends HttpServlet {
 	protected void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		
-		String username = request.getParameter("Username");
-		String password = request.getParameter("Password");
-		String display_name = request.getParameter("DisplayName");
-		String email = request.getParameter("Email");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String display_name = request.getParameter("displayName");
+		String email = request.getParameter("email");
 		
 		int addResult = JDBCConnector.addUser(username, password, display_name, email);
 		String json;

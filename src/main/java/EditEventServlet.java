@@ -26,14 +26,14 @@ public class EditEventServlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int event_id = Integer.parseInt(request.getParameter("Event_id"));
-		int user_id = Integer.parseInt(request.getParameter("User_id"));
-		String name = request.getParameter("Name");
-		String organizer = request.getParameter("Organizer");
-		String description = request.getParameter("Description");
-		String date = request.getParameter("Date");
-		String time = request.getParameter("Time");
-		String time_end = request.getParameter("TimeEnd");
+		int event_id = Integer.parseInt(request.getParameter("event_id"));
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		String name = request.getParameter("eventName");
+		String organizer = request.getParameter("organization");
+		String description = request.getParameter("description");
+		String date = request.getParameter("eventDate");
+		String time = request.getParameter("startTime");
+		String time_end = request.getParameter("endTime");
 		
 		JDBCConnector.Event event = new JDBCConnector.Event(event_id, user_id, name, organizer, description, date, time, time_end);
 		JDBCConnector.setEvent(event);

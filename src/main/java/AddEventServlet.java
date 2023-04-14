@@ -43,12 +43,12 @@ public class AddEventServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int user_id = Integer.parseInt(request.getParameter("User_id"));
-		String name = request.getParameter("Name");
-		String organizer = request.getParameter("Organizer");
-		String description = request.getParameter("Description");
-		String date = request.getParameter("Date");
-		String time = request.getParameter("Time");
-		String time_end = request.getParameter("TimeEnd");
+		String name = request.getParameter("eventName");
+		String organizer = request.getParameter("organization");
+		String description = request.getParameter("description");
+		String date = request.getParameter("eventDate");
+		String time = request.getParameter("startTime");
+		String time_end = request.getParameter("endTime");
 		
 		JDBCConnector.addEvent(user_id, name, organizer, description, date, time, time_end);
 	}

@@ -44,8 +44,8 @@ public class LoginServlet extends HttpServlet {
 	protected void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		
-		String username = request.getParameter("Username");
-		String password = request.getParameter("Password");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		String json;
 		
 		JDBCConnector.User user = JDBCConnector.getUser(username);
