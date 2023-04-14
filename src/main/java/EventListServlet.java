@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 /**
  * Servlet implementation class EventListServlet
  */
@@ -33,6 +35,11 @@ public class EventListServlet extends HttpServlet {
 		
 		String date = request.getParameter("Date");
 		ArrayList<JDBCConnector.Event> eventList = JDBCConnector.getEventsByDate(date);
+		Gson gson = new Gson();
+		
+		out.print(gson.toJson(eventList));
+		out.flush();
+		out.close();
 		
 		// TODO: Turn the ArrayList of Events into a JSON
 	}

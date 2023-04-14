@@ -2,7 +2,11 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/AddEventServlet")
 public class AddEventServlet extends HttpServlet {
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	ZoneId pst = ZoneId.of("America/Los_Angeles");
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -42,6 +49,8 @@ public class AddEventServlet extends HttpServlet {
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		
 		int user_id = Integer.parseInt(request.getParameter("User_id"));
 		String name = request.getParameter("eventName");
 		String organizer = request.getParameter("organization");
@@ -49,7 +58,34 @@ public class AddEventServlet extends HttpServlet {
 		String date = request.getParameter("eventDate");
 		String time = request.getParameter("startTime");
 		String time_end = request.getParameter("endTime");
+		int errorCode = -1;
 		
-		JDBCConnector.addEvent(user_id, name, organizer, description, date, time, time_end);
+		try {
+			if (sdf.parse(date).compareTo(new Date()) < 0) {
+				// If the given date is in the past, it is invalid
+				errorCode = 1;
+			}
+			else if (sdf.parse(date).compareTo(new Date()) == 0 && LocalTime.parse(time).compareTo(LocalTime.now(pst)) < 0) {
+				// If the given date is today, but the start time is before the current time
+				errorCode = 2;
+			}
+			else if (LocalTime.parse(time).compareTo(LocalTime.parse(time_end)) >= 0) {
+				// If the start time is after or the same as the end time
+				errorCode = 3;
+			}
+			else {
+				// If the given date is in the future
+				JDBCConnector.addEvent(user_id, name, organizer, description, date, time, time_end);
+				errorCode = 0;
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			out.print("{\"error_code\":" + errorCode + "}");
+			out.flush();
+			out.close();
+		}
 	}
 }
