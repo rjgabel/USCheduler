@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 /**
  * Servlet implementation class AddEventServlet
  */
@@ -50,6 +52,8 @@ public class AddEventServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		
 		int user_id = Integer.parseInt(request.getParameter("User_id"));
 		String name = request.getParameter("eventName");
@@ -58,32 +62,37 @@ public class AddEventServlet extends HttpServlet {
 		String date = request.getParameter("eventDate");
 		String time = request.getParameter("startTime");
 		String time_end = request.getParameter("endTime");
-		int errorCode = -1;
+		Gson gson = new Gson();
 		
 		try {
 			if (sdf.parse(date).compareTo(new Date()) < 0) {
 				// If the given date is in the past, it is invalid
-				errorCode = 1;
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				String error = "Invalid date: Date must be in the future.";
+				out.write(gson.toJson(error));
 			}
 			else if (sdf.parse(date).compareTo(new Date()) == 0 && LocalTime.parse(time).compareTo(LocalTime.now(pst)) < 0) {
 				// If the given date is today, but the start time is before the current time
-				errorCode = 2;
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				String error = "Invalid time: Start time must be in the future.";
+				out.write(gson.toJson(error));
 			}
 			else if (LocalTime.parse(time).compareTo(LocalTime.parse(time_end)) >= 0) {
 				// If the start time is after or the same as the end time
-				errorCode = 3;
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				String error = "Invalid time: Start time must come before the end time.";
+				out.write(gson.toJson(error));
 			}
 			else {
 				// If the given date is in the future
 				JDBCConnector.addEvent(user_id, name, organizer, description, date, time, time_end);
-				errorCode = 0;
+				response.setStatus(HttpServletResponse.SC_OK);
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
-			out.print("{\"error_code\":" + errorCode + "}");
 			out.flush();
 			out.close();
 		}
