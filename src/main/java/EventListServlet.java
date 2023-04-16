@@ -32,12 +32,15 @@ public class EventListServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		
 		String date = request.getParameter("Date");
 		ArrayList<JDBCConnector.Event> eventList = JDBCConnector.getEventsByDate(date);
 		Gson gson = new Gson();
 		
-		out.print(gson.toJson(eventList));
+		response.setStatus(HttpServletResponse.SC_OK);
+		out.write(gson.toJson(eventList));
 		out.flush();
 		out.close();
 		
