@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.smallBase {
+	width: 40%; 
+	height: 600px; 
+	margin: auto; 
+	margin-top: 60px; 
+	background-color: white; 
+	text-align: center;
+}
+
+.username, .password, .displayName, .email {
+	width:70%; 
+	margin: auto; 
+	margin-bottom: 20px; 
+	font-size: 28px; 
+	padding: 16px; 
+	background-color:#EBEBEB; 
+	border:none; 
+	color:#A6A6A6
+}
+
+.submitBtn {
+	width: 75%; 
+	margin: auto; 
+	padding: 18px 0 18px 0;
+	margin-bottom: 20px; 
+	font-size: 28px; 
+	background-color:#D64949; 
+	border:none; 
+	color:white;
+}

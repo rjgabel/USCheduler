@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -43,34 +45,43 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String json;
+		
+		Gson gson = new Gson();
+		if (username.isEmpty() || password.isEmpty()) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			String error = "User info missing";
+			out.write(gson.toJson(error));
+			out.flush();
+			out.close();
+			return;
+		}
 		
 		JDBCConnector.User user = JDBCConnector.getUser(username);
 		if (user.equals(null)) {
 			// If the user was not found
-			json = "{\"user_id\":-1}";
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			String error = "User not found";
+			out.write(gson.toJson(error));
 		}
 		else {
 			if (!user.getPassword().equals(password)) {
 				// If the inputed password does not match that user's password
-				json = "{\"user_id\":-2}";
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				String error = "Incorrect password";
+				out.write(gson.toJson(error));
 			}
 			else {
 				// The username and password is correct
-				json = "{";
-				json += "\"user_id\":" + user.getUserID() + ", ";
-				json += "\"username\":\"" + user.getUsername() + "\", ";
-				json += "\"password\":\"" + user.getPassword() + "\", ";
-				json += "\"display_name\":\"" + user.getDisplayName() + "\", ";
-				json += "\"email\":\"" + user.getEmail() + "\"";
-				json += "}";
+				response.setStatus(HttpServletResponse.SC_OK);
+				out.write(gson.toJson(user));
 			}
 		}
 		
-		out.print(json);
 		out.flush();
 		out.close();
 		
