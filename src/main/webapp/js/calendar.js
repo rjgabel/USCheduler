@@ -16,7 +16,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
  //function to display event information on a current day
  //use ajax to get information from servlet + json strings
  //use for loop to print out event information in divs
-async function DisplayEventsInformation(){
+function DisplayEventsInformation(){
 	 var baseURL = window.location.origin + "/USCheduler/";
 	 var url = new URL("EventListServlet", baseURL);
 	 fetch(url)
