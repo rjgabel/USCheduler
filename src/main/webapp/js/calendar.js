@@ -26,15 +26,32 @@ function DisplayEventsInformation(){
 		 })
 		 .then(data => {
 			 Object.keys(data).forEach(function(key){
-				 //create a new div and display it!!
+				 //create new div
 				 var newDiv = document.createElement("div");
-				 //newDiv.textContent = ;
+				 newDiv.setAttribute("id", "event");
+				 //when an event is clicked, go to eventDisplay page 
+				 //(is there any way to share which event it is?)
+				 newDiv.onclick = function() {
+					 e.preventDefault();
+					 window.location.href = 'eventDisplay.html';
+				 }
+				 
 				 var eventName = document.createElement("p");
 				 eventName.innerText = data['name'];
+				 eventName.setAttribute("id", "eventName");
+				 eventName.setAttribute("class", "eventName");
 				 newDiv.appendChild(eventName);
+				 
 				 var eventDetails = document.createElement("p");
 				 eventDetails.innerText = data['organizer'] + data['time'] + '-' + data['time-end'];
+				 eventDetails.setAttribute("id", "eventDetails");
+				 eventDetails.setAttribute("class", "eventDetails");
 				 newDiv.appendChild(eventDetails);
+				 
+				 var hr = document.createElement("hr");
+				 hr.setAttribute("class", "bottomLine");
+				 newDiv.appendChild(hr);
+				 
 			 	 //insert div into html//gotta give the class scroll the id scroll
 			 	 document.getElementById('scroll').appendChild(newDiv);
 			 }); 
