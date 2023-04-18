@@ -37,13 +37,13 @@ function DisplayEventsInformation(){
 				 }
 				 
 				 var eventName = document.createElement("p");
-				 eventName.innerText = data['name'];
+				 eventName.innerText = key['name'];
 				 eventName.setAttribute("id", "eventName");
 				 eventName.setAttribute("class", "eventName");
 				 newDiv.appendChild(eventName);
 				 
 				 var eventDetails = document.createElement("p");
-				 eventDetails.innerText = data['organizer'] + data['time'] + '-' + data['time-end'];
+				 eventDetails.innerText = key['organizer'] + key['time'] + '-' + key['time-end'];
 				 eventDetails.setAttribute("id", "eventDetails");
 				 eventDetails.setAttribute("class", "eventDetails");
 				 newDiv.appendChild(eventDetails);
