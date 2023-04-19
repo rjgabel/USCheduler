@@ -16,12 +16,12 @@ async function addEvent(event){
     let sender = {
         user_id: sessionStorage.getItem("user_id"),
         name: document.eventForm.eventName.value,
-        organization: document.eventForm.organization,
-        description: document.eventForm.description,
-        date: document.eventForm.eventDate,
-        time: document.eventForm.startTime,
-        time_end: document.eventForm.endTime,
-        eventImage: document.eventForm.eventImage
+        organization: document.eventForm.organization.value,
+        description: document.eventForm.description.value,
+        date: document.eventForm.eventDate.value,
+        time: document.eventForm.startTime.value,
+        time_end: document.eventForm.endTime.value,
+        eventImage: document.eventForm.eventImage.value
     };
 
     const tempJSON = JSON.stringify(sender);
