@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.orgInput, .nameInput, .descripInput {
+.orgInput, .nameInput, .descripInput, .imgInput {
 	width:70%; 
 	margin: auto; 
 	margin-bottom: 20px; 
