@@ -62,6 +62,7 @@ public class AddEventServlet extends HttpServlet {
 		String date = request.getParameter("eventDate");
 		String time = request.getParameter("startTime");
 		String time_end = request.getParameter("endTime");
+		String img_url = request.getParameter("imageURL");
 		Gson gson = new Gson();
 		
 		try {
@@ -85,7 +86,7 @@ public class AddEventServlet extends HttpServlet {
 			}
 			else {
 				// If the given date is in the future
-				JDBCConnector.addEvent(user_id, name, organizer, description, date, time, time_end);
+				JDBCConnector.addEvent(user_id, name, organizer, description, date, time, time_end, img_url);
 				response.setStatus(HttpServletResponse.SC_OK);
 			}
 		} catch (ParseException e) {

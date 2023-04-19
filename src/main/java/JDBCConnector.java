@@ -241,9 +241,10 @@ public class JDBCConnector {
 		private String date;
 		private String time;
 		private String time_end;
+		private String img_url;
 
 		public Event(int event_id, int user_id, String name, String organizer, String description, String date
-				, String time, String time_end) {
+				, String time, String time_end, String img_url) {
 			this.event_id = event_id;
 			this.user_id = user_id;
 			this.name = name;
@@ -252,6 +253,7 @@ public class JDBCConnector {
 			this.date = date;
 			this.time = time;
 			this.time_end = time_end;
+			this.img_url = img_url;
 		}
 
 		public int getEventID() {
@@ -285,6 +287,10 @@ public class JDBCConnector {
 		public String getEventTimeEnd() {
 			return time_end;
 		}
+		
+		public String getImg_url() {
+	        return img_url;
+	    }
 	}
 
 	/*
@@ -307,7 +313,8 @@ public class JDBCConnector {
 			rs = st.executeQuery("SELECT * FROM EVENTTABLE WHERE EVENTID=" + event_id);
 			if (rs.next()) {
 				event = new Event(event_id, rs.getInt("USERID"), rs.getString("EVENTNAME"), rs.getString("ORGANIZER"),
-						rs.getString("EVENTDESCRIPTION"), rs.getString("EVENTDATE"), rs.getString("EVENTTIME"), rs.getString("EVENTTIMEEND"));
+						rs.getString("EVENTDESCRIPTION"), rs.getString("EVENTDATE"), rs.getString("EVENTTIME"),
+						rs.getString("EVENTTIMEEND"), rs.getString("IMGURL"));
 			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -345,7 +352,8 @@ public class JDBCConnector {
 			rs = st.executeQuery("SELECT * FROM EVENTTABLE WHERE EVENTDATE=" + event_date);
 			while (rs.next()) {
 				eventList.add(new Event(rs.getInt("EVENTID"), rs.getInt("USERID"), rs.getString("EVENTNAME"), rs.getString("ORGANIZER"),
-						rs.getString("EVENTDESCRIPTION"), rs.getString("EVENTDATE"), rs.getString("EVENTTIME"), rs.getString("EVENTTIMEEND")));
+						rs.getString("EVENTDESCRIPTION"), rs.getString("EVENTDATE"), rs.getString("EVENTTIME"),
+						rs.getString("EVENTTIMEEND"), rs.getString("IMGURL")));
 			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -387,7 +395,7 @@ public class JDBCConnector {
 					+ "',ORGANIZER='" + event.getOrganizer() + "',EVENTDESCRIPTION='" + event.getEventDescription()
 					+ "',EVENTDATE='" + event.getEventDate()
 					+ "',EVENTTIME='" + event.getEventTime() + "',EVENTTIMEEND='" + event.getEventTimeEnd()
-					+ "' WHERE EVENTID=" + event.getEventID());
+					+ "',IMGURL='" + event.getImg_url() + "' WHERE EVENTID=" + event.getEventID());
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
@@ -411,7 +419,7 @@ public class JDBCConnector {
 	 * Adds a new event and returns the EventID of the new event.
 	 */
 	public static int addEvent(int user_id, String name, String organizer, String description, String date, 
-			String time, String time_end) {
+			String time, String time_end, String img_url) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -425,9 +433,9 @@ public class JDBCConnector {
 			conn = DriverManager.getConnection(URL);
 			st = conn.createStatement();
 			st.execute(
-					"INSERT INTO EVENTTABLE(USERID,EVENTNAME,ORGANIZER,EVENTDESCRIPTION,EVENTTIME,EVENTTIMEEND)VALUES("
+					"INSERT INTO EVENTTABLE(USERID,EVENTNAME,ORGANIZER,EVENTDESCRIPTION,EVENTTIME,EVENTTIMEEND,IMGURL)VALUES("
 							+ user_id + ",'" + name + "','" + organizer + "','" + description + "','" + date + "','" + time + "','"
-							+ time_end + "')");
+							+ time_end + ",'" + img_url + "')");
 			// https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_last-insert-id
 			rs = st.executeQuery("SELECT LAST_INSERT_ID()");
 			rs.next();
