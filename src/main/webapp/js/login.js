@@ -5,14 +5,16 @@
 
 const logForm = document.getElemenbyById("loginForm");
 logForm.addEventListener("submit", loginUser);
+
+
  async function loginUser(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const url = form.action;
 
     let logInfo = {
-        username: document.loginForm.username,
-        password: document.loginForm.password
+        username: document.loginForm.username.value,
+        password: document.loginForm.password.value
     }
 
     const logJson = JSON.stringify(logInfo);
@@ -41,9 +43,5 @@ logForm.addEventListener("submit", loginUser);
             sessionStorage.setItem("email", user.email);
         }
     })
-
- }
-
- function registerBtn(){
 
  }
