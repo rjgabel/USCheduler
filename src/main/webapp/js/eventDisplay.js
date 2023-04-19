@@ -23,9 +23,9 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 		 .then(data => {
 			 document.getElementById('title').innerHTML = data['name'];
 			 document.getElementById('club').innerHTML = data['organizer'];
-			 document.getElementById('time').innerHTML = data['date'] + ' | ' + data['time'] + '-' + data['time-end'];
+			 document.getElementById('time').innerHTML = data['date'] + ' | ' + data['time'] + '-' + data['time_end'];
 			 document.getElementById('description').innerHTML = data['description'];
-			 document.getElementById('imgFrame').innerHTML = data['time']; //change this later
+			 document.getElementById('imgFrame').src = data['img_url']; //change this later
 		 }).catch(function(error){
 			 console.log('error in loading event info', error)
 		 });
