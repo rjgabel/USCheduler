@@ -7,8 +7,9 @@ public class Event {
     private String date;
     private String time;
     private String time_end;
+    private String img_url;
 
-    public Event(int event_id, int user_id, String name, String organizer, String description, String date, String time, String time_end) {
+    public Event(int event_id, int user_id, String name, String organizer, String description, String date, String time, String time_end, String img_url) {
         this.event_id = event_id;
     	this.user_id = user_id;
         this.name = name;
@@ -17,6 +18,7 @@ public class Event {
         this.date = date;
         this.time = time;
         this.time_end = time_end;
+        this.img_url = img_url;
     }
 
     public int getEvent_id() {
@@ -81,6 +83,14 @@ public class Event {
 
     public void setTime_end(String time_end) {
         this.time_end = time_end;
+    }    
+    
+    public String getImg_url() {
+        return img_url;
+    }
+
+    public void setImg_url(String img_url) {
+    	this.img_url = img_url;
     }    
 
 }
