@@ -9,46 +9,6 @@ public class JDBCConnector {
 	private static final String URL = "jdbc:mysql://localhost:3306/finalprojectdatabase?user=root&password=root";
 
 	/*
-	 * A class used to represent returned user data (will probably replace with
-	 * actual user class once it is written)
-	 */
-	public static class User {
-		private int user_id;
-		private String username;
-		private String password;
-		private String display_name;
-		private String email;
-
-		public User(int user_id, String username, String password, String display_name, String email) {
-			this.user_id = user_id;
-			this.username = username;
-			this.password = password;
-			this.display_name = display_name;
-			this.email = email;
-		}
-
-		public int getUserID() {
-			return user_id;
-		}
-
-		public String getUsername() {
-			return username;
-		}
-
-		public String getPassword() {
-			return password;
-		}
-
-		public String getDisplayName() {
-			return display_name;
-		}
-
-		public String getEmail() {
-			return email;
-		}
-	}
-
-	/*
 	 * Returns the user with the specified username. If the user with the specified
 	 * username does not exist, returns null.
 	 */
