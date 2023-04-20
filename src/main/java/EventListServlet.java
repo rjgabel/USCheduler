@@ -36,7 +36,7 @@ public class EventListServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		String date = request.getParameter("Date");
-		ArrayList<JDBCConnector.Event> eventList = JDBCConnector.getEventsByDate(date);
+		ArrayList<Event> eventList = JDBCConnector.getEventsByDate(date);
 		Gson gson = new Gson();
 		
 		response.setStatus(HttpServletResponse.SC_OK);
