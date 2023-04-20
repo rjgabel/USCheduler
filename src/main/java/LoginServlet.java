@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 		
-		JDBCConnector.User user = JDBCConnector.getUser(username);
+		User user = JDBCConnector.getUser(username);
 		if (user.equals(null)) {
 			// If the user was not found
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

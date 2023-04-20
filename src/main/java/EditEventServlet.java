@@ -73,7 +73,7 @@ public class EditEventServlet extends HttpServlet {
 			}
 			else {
 				// If the given date is in the future
-				JDBCConnector.Event event = new JDBCConnector.Event(event_id, user_id, name, organizer, description, date, time, time_end, img_url);
+				Event event = new Event(event_id, user_id, name, organizer, description, date, time, time_end, img_url);
 				JDBCConnector.setEvent(event);
 				response.setStatus(HttpServletResponse.SC_OK);
 			}

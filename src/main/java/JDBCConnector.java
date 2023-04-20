@@ -286,10 +286,10 @@ public class JDBCConnector {
 		try {
 			conn = DriverManager.getConnection(URL);
 			st = conn.createStatement();
-			st.execute("UPDATE EVENTTABLE SET USERID=" + event.getUser_id() + ",EVENTNAME='" + event.getEventName()
-					+ "',ORGANIZER='" + event.getOrganizer() + "',EVENTDESCRIPTION='" + event.getEventDescription()
-					+ "',EVENTDATE='" + event.getEventDate()
-					+ "',EVENTTIME='" + event.getEventTime() + "',EVENTTIMEEND='" + event.getEventTimeEnd()
+			st.execute("UPDATE EVENTTABLE SET USERID=" + event.getUser_id() + ",EVENTNAME='" + event.getName()
+					+ "',ORGANIZER='" + event.getOrganizer() + "',EVENTDESCRIPTION='" + event.getDescription()
+					+ "',EVENTDATE='" + event.getDate()
+					+ "',EVENTTIME='" + event.getTime() + "',EVENTTIMEEND='" + event.getTime_end()
 					+ "',IMGURL='" + event.getImg_url() + "' WHERE EVENTID=" + event.getEvent_id());
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();

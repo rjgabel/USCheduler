@@ -81,7 +81,7 @@ public class RegisterServlet extends HttpServlet {
 		else {
 			// Registration was successful
 			response.setStatus(HttpServletResponse.SC_OK);
-			JDBCConnector.User user = JDBCConnector.getUser(addResult);
+			User user = JDBCConnector.getUser(addResult);
 			out.write(gson.toJson(user));
 		}
 		
