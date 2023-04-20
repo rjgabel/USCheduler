@@ -4,15 +4,12 @@
 
 
 const tempform = document.getElementById("eventForm");
-tempform.addEventListener("submit", addEvent);
-
-
-async function addEvent(event){
+tempform.addEventListener("submit", function addEvent(event){
 
     event.preventDefault();
     const form = event.currentTarget;
-    const url = form.action;
-
+    let baseUrl = window.location.origin + "/USCheduler/";
+    var url = new URL("AddEventServlet", baseURL);
     let sender = {
         user_id: sessionStorage.getItem("user_id"),
         name: document.eventForm.eventName.value,
@@ -24,35 +21,19 @@ async function addEvent(event){
         eventImage: document.eventForm.eventImage.value
     };
 
-    const tempJSON = JSON.stringify(sender);
-
-    await fetch(url, {
+    const eventData = new URLSearchParams(sender);
+    fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
             Accept: "application/json",
         },
-        body: tempJSON
+        body: eventData
     })
-    .then((response) => response.json())
+    .then(response => response.json())
     //receives the response as json
-    .then((res) => {
-        const obj = JSON.parse(response);
-        if(obj.error_code === 0){
-            //correctly posted
-            console.log('event Added Successfully')
-        }
-        else if(obj.error_code === 1){
-            console.log('Invalid date: date in past')
-        }
-        else if(obj.error_code === 2){
-            console.log('Invalid Time: time is past')
-        }
-        else if(obj.error_code === 3){
-            console.log('Invalid End: end before start')
-        }
-    })
+    //there is nothing to do with the json response if no error occurred.
     .catch(function (error) {
-            console.log('request failed', error)
+            console.log(error.message());
     });
 }
+);

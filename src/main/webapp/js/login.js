@@ -1,47 +1,29 @@
-/**
- *  I have not tested this yet
- */
-
-
 const logForm = document.getElemenbyById("loginForm");
-logForm.addEventListener("submit", loginUser);
-
-
- async function loginUser(event) {
+logForm.addEventListener("submit", function(event) {
     event.preventDefault();
     const form = event.currentTarget;
-    const url = form.action;
+    let baseURL = window.location.origin + "/USCheduler/";
+    const url = new URL("LoginServlet", baseURL);
 
-    let logInfo = {
-        username: document.loginForm.username.value,
-        password: document.loginForm.password.value
-    }
+    const logFormData = new FormData(logForm);
+    const logData = new URLSearchParams(logFormData);
 
-    const logJson = JSON.stringify(logInfo);
-
-    await fetch(url{
-        method: "GET",
+    fetch(url, {
+        method: "POST",
         headers: {
-            "Content-Type": "application/json",
             Accept: "application/json"
         },
-        body:logJson
+        body:logData
     })
     .then((response) =>response.json())
-    .then((res) =>{
-        const user = JSON.parse(response);
-        if(user.user_id === -1){
-            console.log("user not found");
-        }
-        else if(user.user_id === -2){
-            console.log("password does not match username");
-        }
-        else{
-            console.log("Successful login");
-            sessionStorage.setItem("user_id", user.user_id);
-            sessionStorage.setItem("display_name", user.display_name);
-            sessionStorage.setItem("email", user.email);
-        }
+    .then(json =>{
+        //the json represents the entire user item.
+        sessionStorage.setItem("user", json);
+        sessionStorage.setItem("user_id", json.user_id);
+        sessionStorage.setItem("balance", json.balance);
+    })
+    .catch(function(error) {
+        console.log(error.message);
     })
 
- }
+ })
