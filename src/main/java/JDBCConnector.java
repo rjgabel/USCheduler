@@ -189,71 +189,6 @@ public class JDBCConnector {
 	}
 
 	/*
-	 * A class used to represent returned user data (will probably replace with
-	 * actual user class once it is written)
-	 */
-	public static class Event {
-		private int event_id;
-		private int user_id;
-		private String name;
-		private String organizer;
-		private String description;
-		private String date;
-		private String time;
-		private String time_end;
-		private String img_url;
-
-		public Event(int event_id, int user_id, String name, String organizer, String description, String date
-				, String time, String time_end, String img_url) {
-			this.event_id = event_id;
-			this.user_id = user_id;
-			this.name = name;
-			this.organizer = organizer;
-			this.description = description;
-			this.date = date;
-			this.time = time;
-			this.time_end = time_end;
-			this.img_url = img_url;
-		}
-
-		public int getEventID() {
-			return event_id;
-		}
-
-		public int getUserID() {
-			return user_id;
-		}
-
-		public String getEventName() {
-			return name;
-		}
-
-		public String getOrganizer() {
-			return organizer;
-		}
-
-		public String getEventDescription() {
-			return description;
-		}
-		
-		public String getEventDate() {
-			return date;
-		}
-
-		public String getEventTime() {
-			return time;
-		}
-
-		public String getEventTimeEnd() {
-			return time_end;
-		}
-		
-		public String getImg_url() {
-	        return img_url;
-	    }
-	}
-
-	/*
 	 * Returns the event with the specified EventID. If the event with the specified
 	 * EventID does not exist, returns null.
 	 */
@@ -351,11 +286,11 @@ public class JDBCConnector {
 		try {
 			conn = DriverManager.getConnection(URL);
 			st = conn.createStatement();
-			st.execute("UPDATE EVENTTABLE SET USERID=" + event.getUserID() + ",EVENTNAME='" + event.getEventName()
+			st.execute("UPDATE EVENTTABLE SET USERID=" + event.getUser_id() + ",EVENTNAME='" + event.getEventName()
 					+ "',ORGANIZER='" + event.getOrganizer() + "',EVENTDESCRIPTION='" + event.getEventDescription()
 					+ "',EVENTDATE='" + event.getEventDate()
 					+ "',EVENTTIME='" + event.getEventTime() + "',EVENTTIMEEND='" + event.getEventTimeEnd()
-					+ "',IMGURL='" + event.getImg_url() + "' WHERE EVENTID=" + event.getEventID());
+					+ "',IMGURL='" + event.getImg_url() + "' WHERE EVENTID=" + event.getEvent_id());
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
