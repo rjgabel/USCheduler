@@ -84,7 +84,6 @@ public class RegisterServlet extends HttpServlet {
 			User user = JDBCConnector.getUser(addResult);
 			out.write(gson.toJson(user));
 		}
-		
 		out.flush();
 		out.close();
 		

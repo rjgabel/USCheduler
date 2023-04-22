@@ -3,6 +3,19 @@ const pickedDate = new Date();
 var notToday = false;
 var lastDay = new Date();
 
+window.addEventListener("load", (event) =>{
+  const addbutt = document.getElementById("addButton");
+  const logbutt = document.getElementById("logButton");
+	if(sessionStorage.getItem('user') != null){
+    addbutt.style.display = "block";
+    logbutt.style.display = "none";
+	}
+	else{
+    addbutt.style.display = "none";
+    logbutt.style.display = "block";
+	}
+});
+
 const updatePickedDate = () => {
   for (let i = 1; i <= lastDay; i++) {
     if (!(i === pickedDate.getDate() && pickedDate.getMonth() === date.getMonth())) 

@@ -15,12 +15,11 @@ regForm.addEventListener('submit', function(event){
     .then((response) => response.json())
     //receives the response as json
     .then((res) => {
-        const obj = JSON.parse(response);
-        console.log(obj)
-        //store the 
+        sesssionStorage.setItem('user', res);
+        window.location.href = "calendar.html";
     })
     .catch(function (error) {
-            console.log('request failed', error)
+        console.log('request failed', error)
     });
     regForm.reset();
 });

@@ -21,6 +21,7 @@ logForm.addEventListener("submit", function(event) {
         sessionStorage.setItem("user", json);
         sessionStorage.setItem("user_id", json.user_id);
         sessionStorage.setItem("balance", json.balance);
+        window.location.href = "calendar.html";
     })
     .catch(function(error) {
         console.log(error.message);
