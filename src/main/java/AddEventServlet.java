@@ -86,8 +86,12 @@ public class AddEventServlet extends HttpServlet {
 			}
 			else {
 				// If the given date is in the future
-				JDBCConnector.addEvent(user_id, name, organizer, description, date, time, time_end, img_url);
+				time = date + " " + time;
+				time_end = date + " " + time_end;
+				
+				int eventid = JDBCConnector.addEvent(user_id, name, organizer, description, date, time, time_end, img_url);
 				response.setStatus(HttpServletResponse.SC_OK);
+				out.write(gson.toJson(eventid));
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

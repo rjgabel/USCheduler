@@ -28,18 +28,20 @@ UserID int,
 EventName varchar(40),
 Organizer varchar(40),
 EventDescription varchar(500),
+EventDate date,
 EventTime datetime,
-EventTimeEnd datetime, 
+EventTimeEnd datetime,
+ImgURL varchar(300),
 PRIMARY KEY (EventID),
 FOREIGN KEY (UserID) REFERENCES UserTable(UserID)
 );
 
+INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL)
+VALUES ("Club Fundraiser", "USC Club", "Selling portos, balls $3 each, not balls $5 each", '2023-03-28',
+'2023-03-28 10:00:00' , '2023-03-28 12:00:00', "https://cdn.vox-cdn.com/thumbor/HKzEesxfKMPrNiSGg8RTLg-wkHQ=/0x0:1936x1212/1200x800/filters:focal(814x452:1122x760)/cdn.vox-cdn.com/uploads/chorus_image/image/53444051/portos_bakery_potato_ball_flickr.0.jpg");
+INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL) 
+VALUES ("ASG Fundraiser", "ASG Club", "Selling boba $5", '2023-04-08',
+'2023-04-08 1:00:00' , '2023-04-08 3:00:00', "https://th.bing.com/th/id/OIP.aTo-dF7BPYOKwuTlfotJSAHaLG?w=128&h=192&c=7&r=0&o=5&dpr=2.5&pid=1.7");
 INSERT INTO EventTable (EventName, Organizer, EventDescription, EventTime, EventTimeEnd) 
-VALUES ("Club Fundraiser", "USC Club", "Selling portos, balls $3 each, not balls $5 each", 
-'2023-03-28 10:00:00' , '2023-03-28 12:00:00');
-INSERT INTO EventTable (EventName, Organizer, EventDescription, EventTime, EventTimeEnd) 
-VALUES ("ASG Fundraiser", "ASG Club", "Selling boba $5", 
-'2023-04-08 1:00:00' , '2023-04-08 3:00:00');
-INSERT INTO EventTable (EventName, Organizer, EventDescription, EventTime, EventTimeEnd) 
-VALUES ("Sports Fundraiser", "Intramural Sports Club", "Selling donuts $2 each, $5 for 3", 
-'2023-03-28 09:00:00' , '2023-03-28 11:00:00');
+VALUES ("Sports Fundraiser", "Intramural Sports Club", "Selling donuts $2 each, $5 for 3", '2023-03-28',
+'2023-03-28 09:00:00' , '2023-03-28 11:00:00', "https://th.bing.com/th/id/OIP.1qHAtUqttF4YMOE6VOg4PwHaE7?pid=ImgDet&rs=1");

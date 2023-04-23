@@ -2,6 +2,68 @@ const date = new Date();
 const pickedDate = new Date();
 var notToday = false;
 var lastDay = new Date();
+var dayResults;
+
+
+const updateEvents = () => {
+	var date = pickedDate.getFullYear() + "-";
+	if(pickedDate.getMonth()+1 <= 9)
+	  date += "0" + (pickedDate.getMonth()+1)  + "-";
+	else
+	  date += (pickedDate.getMonth()+1) + "-";
+	  
+	if(pickedDate.getDate() <= 9) 
+		date += "0" + pickedDate.getDate();
+	else
+	  date += pickedDate.getDate();
+	
+	$.ajax({
+		url: "EventListServlet",
+		type: "POST",
+		data: {
+			Date: date
+		},
+		success: function(result) {
+			dayResults = result;
+			var events = "";
+			for(var i = 0; i < result.length; i++) {
+				var start = result[i].time;
+				start = start.split(" ")[1].split(":")[0];
+				start = Number(start);
+				
+				if(start > 12) {
+					start = start%12 + "pm"
+				}
+				else if (start == 12) {
+					start += "pm"
+				}
+				else {
+					start += "am"
+				}
+				
+				var end = result[i].time_end;
+				end = end.split(" ")[1].split(":")[0];
+				end = Number(end);
+				if(end > 12) {
+					end = end%12 + "pm"
+				}
+				else if (end == 12) {
+					end += "pm"
+				}
+				else {
+					end += "am"
+				}
+				
+				
+				events += "<div id=event" + i + " onclick='displayEvent(" + i + ")'>";
+				events += "<p id=eventName" + i + " class=\"eventName\">"+ result[i].name;
+				events += "<p id=eventDetails" + i + " class=\"eventDetails\">" + result[i].organizer + " | " + start + " - " + end + "</p>";
+				events += "<hr class=\"bottomLine\"></div>"
+			}
+			$("#eventList").empty().append(events);
+		}
+	});
+}
 
 const updatePickedDate = () => {
   for (let i = 1; i <= lastDay; i++) {
@@ -17,6 +79,7 @@ const updatePickedDate = () => {
 	      pickedDate.setDate(res[0].innerHTML);
           pickedDate.setMonth(date.getMonth());
           notToday = true;
+ 		  updateEvents();
           renderCalendar();
 
         });
@@ -100,8 +163,8 @@ const renderCalendar = () => {
     days += `<div class="next-date">${j}</div>`;
     monthDays.innerHTML = days;
   }
-  
- updatePickedDate();
+
+  updatePickedDate();
 };
 
 document.querySelector(".prev").addEventListener("click", () => {
@@ -118,4 +181,9 @@ document.querySelector(".next").addEventListener("click", () => {
 });
 
 renderCalendar();
+updateEvents();	
 
+function displayEvent(idx) {
+	sessionStorage.setItem("eventJSON", JSON.stringify(dayResults[idx]));
+	window.location.href = "eventDisplay.html";
+}

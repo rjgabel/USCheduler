@@ -1,34 +1,39 @@
-//untested code
-//including ajax for jQuery
-src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 
- //function to display current event, organizer, date/time, event description, and image
- function loadEventInformation(eventid){
-	 //try with fetch
-	 var baseURL = window.location.origin + "/USCheduler/";
-	 var url = new URL("EventListServlet", baseURL);
-	 
-	 fetch(url)
-		 .then(data => {
-			 console.log(data.text())
-			 return data.json();
-		 })
-		 .then(data => {
-			 let i = 1; 
-			 //loops over each key to see if it matches the event's id
-			 Object.keys(data).forEach(function(key){
-				 if (eventid == i.toString){
-					 document.getElementById('title').innerHTML = key['name'];
-			 		 document.getElementById('club').innerHTML = key['organizer'];
-			 		 document.getElementById('time').innerHTML = key['date'] + ' | ' + key['time'] + '-' + key['time_end'];
-			 		 document.getElementById('description').innerHTML = key['description'];
-			 		 document.getElementById('imgFrame').src = key['img_url'];
-				 }
-				 else {
-					 i++;
-				 }
-			 }); 
-		 }).catch(function(error){
-			 console.log('error in loading event info', error)
-		 });
- }
+$(window).on("load", function() { 
+	var mEvent = JSON.parse(sessionStorage.getItem("eventJSON"));
+	var start = mEvent.time;
+	start = start.split(" ")[1].split(":")[0];
+	start = Number(start);
+		
+	if(start > 12) {
+		start = start%12 + "pm"
+	}
+	else if (start == 12) {
+		start += "pm"
+	}
+	else {
+		start += "am"
+	}
+			
+	var end = mEvent.time_end;
+	end = end.split(" ")[1].split(":")[0];
+	end = Number(end);
+	if(end > 12) {
+		end = end%12 + "pm"
+	}
+	else if (end == 12) {
+		end += "pm"
+	}
+	else {
+		end += "am"
+	}
+	
+	var date = mEvent.time.split(" ")[0].replaceAll("-","/");
+	
+	document.getElementById("title").innerHTML = mEvent.name;
+	document.getElementById("club").innerHTML = mEvent.organizer;
+	document.getElementById("time").innerHTML = date + " | " + start + " - " + end;
+	document.getElementById("description").innerHTML = mEvent.description;
+	document.getElementById("eventImg").src = mEvent.img_url;
+	
+});

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>USCheduler</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="css/constants.css">
 <link rel="stylesheet" href="css/calendar.css">
 <link rel="stylesheet" href="css/miniCalendar.css">
@@ -30,35 +31,7 @@
 		<div class="row">
 			<div style="flex:55%;">
 				<div class=scroll style="height: 500px; margin-top:50px; padding-left:20px; margin-left:30px">
-					<div style="direction: ltr; padding-top:40px">
-						<div id=event>
-							<p id=eventName class="eventName">Portos Fundraiser</p>
-							<p id=eventDetails class="eventDetails"> CASA  |  7am - 2pm </p>
-							<hr class="bottomLine">
-						</div>
-						
-						<div id=event>
-							<p id=eventName class="eventName">Succulents</p>
-							<p style="font-size: 36px; color:#545454; margin-top:0; margin-bottom:15px"> SC Garden Club  |  12pm - 2pm </p>
-							<hr class="bottomLine">						
-						</div>
-						
-						<div id=event>
-							<p id=eventName class="eventName">Boba</p>
-							<p id=eventDetails class="eventDetails"> Tao  |  10am - 1pm </p>
-							<hr class="bottomLine">
-						</div>
-						
-						<div id=event>
-							<p id=eventName class="eventName">Thrifted Clothes</p>
-							<p id=eventDetails class="eventDetails"> Break on 2  |  4pm - 6pm </p>
-							<hr class="bottomLine">
-						</div>
-						
-						<div id=event>
-							<p id=eventName class="eventName">Tacos</p>
-							<p id=eventDetails class="eventDetails"> SCIA  |  11am - 2pm </p>						
-						</div>
+					<div id=eventList style="direction: ltr; padding-top:40px">
 					</div>
 				</div>
 				<div id=dateBorder class="bufferBack">

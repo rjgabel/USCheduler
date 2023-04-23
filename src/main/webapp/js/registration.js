@@ -20,7 +20,7 @@ function Register() {
         	window.location.href ="calendar.html";
         },
 		error: function(result) {
-			alert(result.innerText);
+			alert(result.responseJSON);
 		},
 		complete: function(data) {
 			document.registrationForm.username.value = "";

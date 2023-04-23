@@ -54,7 +54,7 @@ const logForm = document.getElementById("loginForm");
         	window.location.href ="calendar.html";
         },
 		error: function(result) {
-			alert(result.innerText);
+			alert(result.responseJSON);
 		},
 		complete: function(data) {
 			document.loginForm.username.value = "";
@@ -67,7 +67,3 @@ const logForm = document.getElementById("loginForm");
  function Register() {
 	 window.location.href ="registration.html";
  }
- 
-=======
- });
->>>>>>> 43ffcd4073080addb924264a73dd29ac67d99def
