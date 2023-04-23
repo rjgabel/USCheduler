@@ -16,6 +16,20 @@ function LoginRegister(e) {
 	 e.preventDefault();
 	 window.location.href = 'login.html';
  }
+
+//function to display buttons based on login status
+ window.addEventListener("load", (event) =>{
+	const addbutt = document.getElementById("addButton");
+	const logbutt = document.getElementById("logButton");
+	  if(sessionStorage.getItem('user') != null){
+	  addbutt.style.display = "block";
+	  logbutt.style.display = "none";
+	  }
+	  else{
+	  addbutt.style.display = "none";
+	  logbutt.style.display = "block";
+	  }
+  });
  
 //function to display event information on a current day
 function DisplayEventsInformation(){
