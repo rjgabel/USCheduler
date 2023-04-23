@@ -45,3 +45,23 @@ VALUES ("ASG Fundraiser", "ASG Club", "Selling boba $5", '2023-04-08',
 INSERT INTO EventTable (EventName, Organizer, EventDescription, EventTime, EventTimeEnd) 
 VALUES ("Sports Fundraiser", "Intramural Sports Club", "Selling donuts $2 each, $5 for 3", '2023-03-28',
 '2023-03-28 09:00:00' , '2023-03-28 11:00:00', "https://th.bing.com/th/id/OIP.1qHAtUqttF4YMOE6VOg4PwHaE7?pid=ImgDet&rs=1");
+
+
+INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL)
+VALUES ("Archery Fundraiser", "Archery Club", "Selling cookies $2 each", '2023-04-27',
+'2023-04-27 10:00:00' , '2023-04-27 11:00:00', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzdbTsO_p38L3P1fsIxax-o_OvrYptBrFqMg&usqp=CAU");
+INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL) 
+VALUES ("Football Fundraiser", "Football Club", "Selling T-shirts $10 each", '2023-04-28',
+'2023-04-28 11:00:00' , '2023-04-28 12:00:00', "https://nationaltoday.com/wp-content/uploads/2019/11/american-football-day.jpg.webp");
+INSERT INTO EventTable (EventName, Organizer, EventDescription, EventTime, EventTimeEnd) 
+VALUES ("Soccer Fundraiser", "Soccer Club", "Selling soccer balls, $10 each", '2023-04-29',
+'2023-04-29 10:00:00' , '2023-04-29 11:00:00', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRLw4h6ornewoPvSvW50SFdabpybW_3ArbNg&usqp=CAU");
+INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL)
+VALUES ("Esports Fundraiser", "Esports Club", "Selling donuts, $3 each", '2023-05-01',
+'2023-05-01 10:00:00' , '2023-05-01 12:00:00', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_kpAVYH6r39wwyfj7cGZjqozGC2XVhV9GDR81DbS0EXqSFKctKBNAOzfyE2UOZR502Wg&usqp=CAU");
+INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL) 
+VALUES ("Choir Fundraiser", "Singing Club", "Selling energy drinks, $3 each", '2023-05-01',
+'2023-05-01 14:00:00' , '2023-05-01 15:00:00', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlNkSQivMeDKJM1TFOIhus94-swDfQ5MX35w&usqp=CAU");
+INSERT INTO EventTable (EventName, Organizer, EventDescription, EventTime, EventTimeEnd) 
+VALUES ("Band Fundraiser", "Band Club", "Selling brownies, $2 each", '2023-05-01',
+'2023-05-01 08:00:00' , '2023-05-01 10:00:00', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqQs9qzyDqsSaDWKUZng3PEd2sRgPjmOJaww&usqp=CAU");
