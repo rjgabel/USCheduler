@@ -42,9 +42,6 @@ VALUES ("Club Fundraiser", "USC Club", "Selling portos, balls $3 each, not balls
 INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL) 
 VALUES ("ASG Fundraiser", "ASG Club", "Selling boba $5", '2023-04-08',
 '2023-04-08 13:00:00' , '2023-04-08 15:00:00', "https://th.bing.com/th/id/OIP.aTo-dF7BPYOKwuTlfotJSAHaLG?w=128&h=192&c=7&r=0&o=5&dpr=2.5&pid=1.7");
-INSERT INTO EventTable (EventName, Organizer, EventDescription, EventTime, EventTimeEnd) 
-VALUES ("Sports Fundraiser", "Intramural Sports Club", "Selling donuts $2 each, $5 for 3", '2023-03-28',
-'2023-03-28 09:00:00' , '2023-03-28 11:00:00', "https://th.bing.com/th/id/OIP.1qHAtUqttF4YMOE6VOg4PwHaE7?pid=ImgDet&rs=1");
 
 
 INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL)
@@ -65,3 +62,5 @@ VALUES ("Choir Fundraiser", "Singing Club", "Selling energy drinks, $3 each", '2
 INSERT INTO EventTable (EventName, Organizer, EventDescription, EventDate, EventTime, EventTimeEnd, ImgURL) 
 VALUES ("Band Fundraiser", "Band Club", "Selling brownies, $2 each", '2023-05-01',
 '2023-05-01 08:00:00' , '2023-05-01 10:00:00', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqQs9qzyDqsSaDWKUZng3PEd2sRgPjmOJaww&usqp=CAU");
+
+SELECT * FROM EventTable;
