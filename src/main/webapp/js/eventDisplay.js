@@ -2,12 +2,6 @@
 //including ajax for jQuery
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 
-//Implementation of the back button.
- function OnBack() {
-	 e.preventDefault();
-	 window.history.back();
- }
- 
  //function to display current event, organizer, date/time, event description, and image
  //but how to get specific event? from event_id? how to get this info?
  function loadEventInformation(){

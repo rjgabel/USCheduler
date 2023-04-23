@@ -2,18 +2,22 @@
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 
 //function to go to add event page
- function AddEvent() {
+const addeventclick = document.querySelector(".addEventBtn");
+addeventclick.addEventListener("click", AddEvent);
+function AddEvent(e) {
 	 e.preventDefault();
 	 window.location.href = 'addEvent.html';
  }
  
- //function to go to login register page
- function LoginRegister() {
+//event listener and function to go to login register page
+const loginregisterclick = document.querySelector(".loginRegBtn");
+loginregisterclick.addEventListener("click", LoginRegister);
+function LoginRegister(e) {
 	 e.preventDefault();
 	 window.location.href = 'login.html';
  }
  
- //function to display event information on a current day
+//function to display event information on a current day
 function DisplayEventsInformation(){
 	 var baseURL = window.location.origin + "/USCheduler/";
 	 var url = new URL("EventListServlet", baseURL);
