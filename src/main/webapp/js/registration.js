@@ -1,26 +1,33 @@
-const regForm = document.getElementById("registrationForm");
-regForm.addEventListener('submit', function(event){
-    event.preventDefault();
-    let baseURL = window.location.origin + "/USCheduler/"
-	var url = new URL("RegisterServlet", baseURL);
-    const regData = new FormData(regForm);
-    const sendReg = new URLSearchParams(regData);
-    fetch(url, {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
+function Register() {
+	var username = document.registrationForm.username.value;
+	var password = document.registrationForm.password.value;
+	var dispName = document.registrationForm.displayName.value;
+	var mail = document.registrationForm.email.value;
+	 
+	 $.ajax({
+		url: "RegisterServlet",
+		type: "POST",
+		data: {
+			username: username,
+			password: password,
+			displayName: dispName,
+			email: mail
+		},
+		success: function(result) {
+			sessionStorage.setItem("username", result.username);
+			sessionStorage.setItem("displayName", result.displayName);
+        	sessionStorage.setItem("user_id", result.userID);
+        	window.location.href ="calendar.html";
         },
-        body: sendReg,
-    })
-    .then((response) => response.json())
-    //receives the response as json
-    .then((res) => {
-        const obj = JSON.parse(response);
-        console.log(obj)
-        //store the 
-    })
-    .catch(function (error) {
-            console.log('request failed', error)
-    });
-    regForm.reset();
-});
+		error: function(result) {
+			alert(result.innerText);
+		},
+		complete: function(data) {
+			document.registrationForm.username.value = "";
+			password = document.registrationForm.password.value = "";
+			dispName = document.registrationForm.displayName.value = "";
+			mail = document.registrationForm.email.value = "";
+		}
+		
+	 });
+}

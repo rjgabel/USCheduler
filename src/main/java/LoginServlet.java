@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		User user = JDBCConnector.getUser(username);
-		if (user.equals(null)) {
+		if (user.getUserID() == -1) {
 			// If the user was not found
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			String error = "User not found";

@@ -8,6 +8,10 @@ public class User {
     private String displayName;
     private String email;
 
+    public User() {
+    	this.userID = -1;
+    }
+    
     public User(int userID, String username, String password, String displayName, String email) {
 		this.userID = userID;
         this.username = username;

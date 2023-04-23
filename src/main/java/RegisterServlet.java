@@ -65,7 +65,6 @@ public class RegisterServlet extends HttpServlet {
 		}
 		
 		int addResult = JDBCConnector.addUser(username, password, display_name, email);
-		String json;
 		if (addResult == -1) {
 			// Username is already taken. Send an error code of -1
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

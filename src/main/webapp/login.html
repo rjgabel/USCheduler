@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>USCheduler</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="css/constants.css">
 <link rel="stylesheet" href="css/login.css">
 </head>
@@ -15,9 +16,9 @@
 			<br>
 			<input id=password name="password" class="password" placeholder="password">
 			<br>
-			<input type="submit" class="loginBtn" value="LOGIN">
+			<button type="button" class="loginBtn" onclick="LogIn()">LOGIN</button> 
 			
-			<button id=register name="register" class="regBtn" type="submit">REGISTER</button>
+			<button id=register name="register" class="regBtn" type="button" onclick="Register()">REGISTER</button>
 			
 			<br>
 		</form>

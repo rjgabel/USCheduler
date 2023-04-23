@@ -83,10 +83,9 @@ div.scroll {
 }
 
 .addEventBtn {
-	width:35%; 
+	width: 80%; 
 	margin: auto; 
 	padding: 10px 0 10px 0;
-	margin-bottom: 20px; 
 	font-size: 24px; 
 	background-color:#D64949; 
 	border:none; 
@@ -94,11 +93,9 @@ div.scroll {
 }
 
 .loginRegBtn {
-	width:40%; 
+	width: 80%; 
 	margin: auto; 
 	padding: 10px 0 10px 0;
-	margin-bottom: 20px; 
-	margin-left: 5%; 
 	font-size: 24px; 
 	background-color:#D64949; 
 	border:none; 

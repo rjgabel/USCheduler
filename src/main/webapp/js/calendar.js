@@ -4,16 +4,14 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 //function to go to add event page
 const addeventclick = document.querySelector(".addEventBtn");
 addeventclick.addEventListener("click", AddEvent);
-function AddEvent(e) {
-	 e.preventDefault();
+function AddEvent() {
 	 window.location.href = 'addEvent.html';
  }
  
 //event listener and function to go to login register page
 const loginregisterclick = document.querySelector(".loginRegBtn");
 loginregisterclick.addEventListener("click", LoginRegister);
-function LoginRegister(e) {
-	 e.preventDefault();
+function LoginRegister() {
 	 window.location.href = 'login.html';
  }
 
@@ -21,13 +19,14 @@ function LoginRegister(e) {
  window.addEventListener("load", (event) =>{
 	const addbutt = document.getElementById("addButton");
 	const logbutt = document.getElementById("logButton");
-	  if(sessionStorage.getItem('user') != null){
-	  addbutt.style.display = "block";
+	var id = sessionStorage.getItem('user_id');
+	  if(sessionStorage.getItem('user_id') != null){
+	  addbutt.style.display = "inline-block";
 	  logbutt.style.display = "none";
 	  }
 	  else{
 	  addbutt.style.display = "none";
-	  logbutt.style.display = "block";
+	  logbutt.style.display = "inline-block";
 	  }
   });
  

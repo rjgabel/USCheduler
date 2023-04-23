@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class JDBCConnector {
-	private static final String URL = "jdbc:mysql://localhost:3306/finalprojectdatabase?user=root&password=root";
+	private static final String URL = "jdbc:mysql://localhost:8080/finalprojectdatabase?user=root&password=root";
 
 	/*
 	 * Returns the user with the specified username. If the user with the specified
@@ -21,7 +21,7 @@ public class JDBCConnector {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		User user = null;
+		User user = new User(-1, " ", " ", " ", " ");
 		try {
 			conn = DriverManager.getConnection(URL);
 			st = conn.createStatement();

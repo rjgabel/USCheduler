@@ -1,7 +1,7 @@
-src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
+
 
 const logForm = document.getElementById("loginForm");
-document.getElementById('loginForm').addEventListener('submit', function(event) {
+/*document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
     let baseURL = window.location.origin + "/USCheduler/";
     const url = new URL("LoginServlet", baseURL);
@@ -33,4 +33,37 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 		//logForm.reset();
 		console.log("reset");
 	}
- });
+ });*/
+ 
+ function LogIn() {
+	 var username = document.loginForm.username.value;
+	 var password = document.loginForm.password.value;
+	 
+	 $.ajax({
+		url: "LoginServlet",
+		type: "POST",
+		data: {
+			username: username,
+			password: password
+		},
+		success: function(result) {
+			sessionStorage.setItem("username", result.username);
+			sessionStorage.setItem("displayName", result.displayName);
+        	sessionStorage.setItem("user_id", result.userID);
+        	window.location.href ="calendar.html";
+        },
+		error: function(result) {
+			alert(result.innerText);
+		},
+		complete: function(data) {
+			document.loginForm.username.value = "";
+			document.loginForm.password.value = "";
+		}
+		
+	 });
+ }
+ 
+ function Register() {
+	 window.location.href ="registration.html";
+ }
+ 
