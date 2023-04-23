@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS finalprojectdatabase;
 CREATE DATABASE finalprojectdatabase;
 USE finalprojectdatabase;
 
+DROP TABLE IF EXISTS `UserTable`;
+
 CREATE TABLE UserTable (
 UserID int NOT NULL AUTO_INCREMENT,
 username varchar(40),
@@ -17,6 +19,8 @@ INSERT INTO UserTable (username, password, displayName, email)
 VALUES ("djli453", "asdf12345", "djli", "devinli@usc.edu");
 INSERT INTO UserTable (username, password, displayName, email) 
 VALUES ("gigachad", "asdf123456", "thechad", "cpowers@usc.edu");
+
+DROP TABLE IF EXISTS `EventTable`;
 
 CREATE TABLE EventTable(
 EventID int NOT NULL AUTO_INCREMENT,
