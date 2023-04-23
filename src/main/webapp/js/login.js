@@ -1,10 +1,9 @@
-const logForm = document.getElemenbyById("loginForm");
-logForm.addEventListener("submit", function(event) {
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const form = event.currentTarget;
     let baseURL = window.location.origin + "/USCheduler/";
     const url = new URL("LoginServlet", baseURL);
-
     const logFormData = new FormData(logForm);
     const logData = new URLSearchParams(logFormData);
 
@@ -21,10 +20,10 @@ logForm.addEventListener("submit", function(event) {
         sessionStorage.setItem("user", json);
         sessionStorage.setItem("user_id", json.user_id);
         sessionStorage.setItem("balance", json.balance);
-        window.location.href = "calendar.html";
     })
     .catch(function(error) {
         console.log(error.message);
     })
-
- })
+    console.log("idk");
+    window.location.href ="calendar.html";
+ });

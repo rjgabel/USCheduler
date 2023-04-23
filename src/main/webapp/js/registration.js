@@ -1,4 +1,4 @@
-const regForm = document.getElementById("regForm");
+const regForm = document.getElementById("registrationForm");
 regForm.addEventListener('submit', function(event){
     event.preventDefault();
     let baseURL = window.location.origin + "/USCheduler/"
@@ -15,11 +15,12 @@ regForm.addEventListener('submit', function(event){
     .then((response) => response.json())
     //receives the response as json
     .then((res) => {
-        sesssionStorage.setItem('user', res);
-        window.location.href = "calendar.html";
+        const obj = JSON.parse(response);
+        console.log(obj)
+        //store the 
     })
     .catch(function (error) {
-        console.log('request failed', error)
+            console.log('request failed', error)
     });
     regForm.reset();
 });
