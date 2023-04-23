@@ -27,15 +27,19 @@ function DisplayEventsInformation(){
 			 return data.json();
 		 })
 		 .then(data => {
+			 let eventNum = 1;
 			 Object.keys(data).forEach(function(key){
-				 //create new div
+				 //create new div, with incrementing id = event1, event2, event3, etc.
 				 var newDiv = document.createElement("div");
-				 newDiv.setAttribute("id", "event");
+				 let eventid = eventNum.toString();
+				 newDiv.setAttribute("id", eventid);
+				 eventNum += 1;
+				 
 				 //when an event is clicked, go to eventDisplay page 
-				 //(is there any way to share which event it is?)
-				 newDiv.onclick = function() {
+				 newDiv.onclick = function(e, eventid) {
 					 e.preventDefault();
 					 window.location.href = 'eventDisplay.html';
+					 loadEventInformation(eventid);
 				 }
 				 
 				 var eventName = document.createElement("p");

@@ -1,10 +1,9 @@
-//untested, rough drafted code
+//untested code
 //including ajax for jQuery
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 
  //function to display current event, organizer, date/time, event description, and image
- //but how to get specific event? from event_id? how to get this info?
- function loadEventInformation(){
+ function loadEventInformation(eventid){
 	 //try with fetch
 	 var baseURL = window.location.origin + "/USCheduler/";
 	 var url = new URL("EventListServlet", baseURL);
@@ -15,11 +14,20 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 			 return data.json();
 		 })
 		 .then(data => {
-			 document.getElementById('title').innerHTML = data['name'];
-			 document.getElementById('club').innerHTML = data['organizer'];
-			 document.getElementById('time').innerHTML = data['date'] + ' | ' + data['time'] + '-' + data['time_end'];
-			 document.getElementById('description').innerHTML = data['description'];
-			 document.getElementById('imgFrame').src = data['img_url']; //change this later
+			 let i = 1; 
+			 //loops over each key to see if it matches the event's id
+			 Object.keys(data).forEach(function(key){
+				 if (eventid == i.toString){
+					 document.getElementById('title').innerHTML = key['name'];
+			 		 document.getElementById('club').innerHTML = key['organizer'];
+			 		 document.getElementById('time').innerHTML = key['date'] + ' | ' + key['time'] + '-' + key['time_end'];
+			 		 document.getElementById('description').innerHTML = key['description'];
+			 		 document.getElementById('imgFrame').src = key['img_url'];
+				 }
+				 else {
+					 i++;
+				 }
+			 }); 
 		 }).catch(function(error){
 			 console.log('error in loading event info', error)
 		 });
