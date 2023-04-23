@@ -39,7 +39,3 @@ VALUES ("ASG Fundraiser", "ASG Club", "Selling boba $5",
 INSERT INTO EventTable (EventName, Organizer, EventDescription, EventTime, EventTimeEnd) 
 VALUES ("Sports Fundraiser", "Intramural Sports Club", "Selling donuts $2 each, $5 for 3", 
 '2023-03-28 09:00:00' , '2023-03-28 11:00:00');
-
-
-SELECT * FROM UserTable;
-SELECT * FROM EventTable;
