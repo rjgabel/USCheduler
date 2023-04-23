@@ -1,5 +1,6 @@
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 
+const logForm = document.getElementById("loginForm");
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
     let baseURL = window.location.origin + "/USCheduler/";
@@ -20,10 +21,16 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         sessionStorage.setItem("user", json);
         sessionStorage.setItem("user_id", json.user_id);
         sessionStorage.setItem("balance", json.balance);
+        console.log(json);
     })
     .catch(function(error) {
         console.log(error.message);
-    })
-    console.log("idk");
-    window.location.href ="calendar.html";
+    });
+    if(sessionStorage.getItem('user' != null)){
+		window.location.href ="calendar.html";
+	}
+	else{
+		//logForm.reset();
+		console.log("reset");
+	}
  });
