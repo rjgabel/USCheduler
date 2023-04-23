@@ -19,18 +19,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     .then(json =>{
         //the json represents the entire user item.
         sessionStorage.setItem("user", json);
-        sessionStorage.setItem("user_id", json.user_id);
-        sessionStorage.setItem("balance", json.balance);
+        sessionStorage.setItem("user_id", json.userID);
         console.log(json);
+        window.location.href ="calendar.html";
     })
     .catch(function(error) {
         console.log(error.message);
     });
-    if(sessionStorage.getItem('user' != null)){
-		window.location.href ="calendar.html";
-	}
-	else{
-		//logForm.reset();
-		console.log("reset");
-	}
  });
