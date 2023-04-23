@@ -101,3 +101,11 @@ div.scroll {
 	border:none; 
 	color:white;
 }
+
+.addEventBtn:hover {
+	cursor:pointer;
+}
+
+.loginRegBtn:hover {
+	cursor:pointer;
+}

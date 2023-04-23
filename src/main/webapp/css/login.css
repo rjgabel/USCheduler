@@ -42,3 +42,11 @@
 	text-decoration-line: underline; 
 	color:#D64949;
 }
+
+.loginBtn:hover {
+	cursor:pointer;
+}
+
+.regBtn:hover {
+	cursor:pointer;
+}

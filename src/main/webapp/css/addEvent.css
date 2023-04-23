@@ -40,3 +40,7 @@
 	border:none; 
 	color:white;
 }
+
+.submitButton:hover {
+	cursor:pointer;
+}

@@ -69,6 +69,10 @@ div.scroll {
 	color:white;
 }
 
+.backButton:hover {
+	cursor:pointer;
+}
+
 .info {
 	padding:10px 0 15px 40px;
 }

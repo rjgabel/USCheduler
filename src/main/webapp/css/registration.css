@@ -30,3 +30,7 @@
 	border:none; 
 	color:white;
 }
+
+.submitBtn:hover {
+	cursor:pointer;
+}
