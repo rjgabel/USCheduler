@@ -19,13 +19,14 @@ const logForm = document.getElementById("loginForm");
     .then(json =>{
         //the json represents the entire user item.
         sessionStorage.setItem("user", json);
-        sessionStorage.setItem("user_id", json.user_id);
-        sessionStorage.setItem("balance", json.balance);
+        sessionStorage.setItem("user_id", json.userID);
         console.log(json);
+        window.location.href ="calendar.html";
     })
     .catch(function(error) {
         console.log(error.message);
     });
+<<<<<<< HEAD
     if(sessionStorage.getItem('user' != null)){
 		window.location.href ="calendar.html";
 	}
@@ -67,3 +68,6 @@ const logForm = document.getElementById("loginForm");
 	 window.location.href ="registration.html";
  }
  
+=======
+ });
+>>>>>>> 43ffcd4073080addb924264a73dd29ac67d99def
